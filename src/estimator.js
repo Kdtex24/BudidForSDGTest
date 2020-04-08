@@ -21,6 +21,8 @@ const convertToDays = (periodType, timeToElapse) => {
             return timeToElapse * 7;
         case 'months':
             return timeToElapse * 30
+        default:
+            return timeToElapse
     }
 };
 
@@ -43,6 +45,5 @@ const covid19ImpactEstimator = (data) => {
 
 };
 
-// console.log(covid19ImpactEstimator(data));
 
 export default covid19ImpactEstimator;
