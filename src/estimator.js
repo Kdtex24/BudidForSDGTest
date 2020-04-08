@@ -27,13 +27,14 @@ const convertToDays = (periodType, timeToElapse) => {
 
 const covid19ImpactEstimator = (data) => {
   const outputData = {
-    data: data,
+    data: null,
     impact: {},
     severeImpact: {}
   };
 
   const { timeToElapse, reportedCases, periodType } = data;
   const { impact, severeImpact } = outputData;
+  outputData.data = data;
   impact.currentlyInfected = reportedCases * 10;
   severeImpact.currentlyInfected = reportedCases * 50;
   const days = convertToDays(periodType, timeToElapse);
