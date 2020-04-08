@@ -12,38 +12,38 @@
 //     totalHospitalBeds: 1380614
 // };
 
-
 const convertToDays = (periodType, timeToElapse) => {
-    switch (periodType) {
-        case 'days':
-            return timeToElapse;
-        case 'weeks':
-            return timeToElapse * 7;
-        case 'months':
-            return timeToElapse * 30
-        default:
-            return timeToElapse
-    }
+  switch (periodType) {
+    case 'days':
+      return timeToElapse;
+    case 'weeks':
+      return timeToElapse * 7;
+    case 'months':
+      return timeToElapse * 30;
+    default:
+      return timeToElapse;
+  }
 };
 
-const covid19ImpactEstimator = (data) => {
-    const outputData = {
-        data: {},
-        impact: {},
-        severeImpact: {}
-    };
+const covid19ImpactEstimator = data => {
+  const outputData = {
+    data: {},
+    impact: {},
+    severeImpact: {}
+  };
 
-    const {timeToElapse, reportedCases, periodType} = data;
-    const {impact, severeImpact} = outputData;
-    impact.currentlyInfected = reportedCases * 10;
-    severeImpact.currentlyInfected = reportedCases * 50;
-    let days = convertToDays(periodType, timeToElapse);
-    let factor = parseInt(days / 3);
-    impact.infectionsByRequestedTime = impact.currentlyInfected * (Math.pow(2, factor));
-    severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (Math.pow(2, factor));
-    return outputData
-
+  const { timeToElapse, reportedCases, periodType } = data;
+  const { impact, severeImpact } = outputData;
+  impact.currentlyInfected = reportedCases * 10;
+  severeImpact.currentlyInfected = reportedCases * 50;
+  let days = convertToDays(periodType, timeToElapse);
+  console.log(days)
+  let factor = parseInt(days / 3);
+  impact.infectionsByRequestedTime =
+    impact.currentlyInfected * Math.pow(2, factor);
+  severeImpact.infectionsByRequestedTime =
+    severeImpact.currentlyInfected * Math.pow(2, factor);
+  return outputData;
 };
-
 
 export default covid19ImpactEstimator;
