@@ -27,7 +27,7 @@ const convertToDays = (periodType, timeToElapse) => {
 
 const covid19ImpactEstimator = (data) => {
   const outputData = {
-    data: {},
+    data: data,
     impact: {},
     severeImpact: {}
   };
@@ -43,5 +43,5 @@ const covid19ImpactEstimator = (data) => {
   return outputData;
 };
 
-// covid19ImpactEstimator(data)
+// console.log(covid19ImpactEstimator(data))
 export default covid19ImpactEstimator;
