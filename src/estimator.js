@@ -14,7 +14,7 @@
 
 const convertToDays = (periodType, timeToElapse) => {
   switch (periodType) {
-    case 'days':  
+    case 'days':
       return timeToElapse;
     case 'weeks':
       return timeToElapse * 7;
@@ -36,10 +36,10 @@ const covid19ImpactEstimator = (data) => {
   const { impact, severeImpact } = outputData;
   impact.currentlyInfected = reportedCases * 10;
   severeImpact.currentlyInfected = reportedCases * 50;
-  const days = convertToDays(periodType, timeToElapse);  
+  const days = convertToDays(periodType, timeToElapse);
   const factor = Math.floor(days / 3);
-  impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** factor);
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** factor);
+  impact.infectionsByRequestedTime = impact.currentlyInfected * 2 ** factor;
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * 2 ** factor;
   return outputData;
 };
 
