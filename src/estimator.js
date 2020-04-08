@@ -25,8 +25,7 @@ const convertToDays = (periodType, timeToElapse) => {
   }
 };
 
-const fifteenPercent = (infectionsByRequestedTime) =>
-  0.15 * infectionsByRequestedTime;
+const fifteenPercent = (infectionsByRequestedTime) => 0.15 * infectionsByRequestedTime;
 
 const availableBeds = (totalHospitalBeds, severeCasesByRequestedTime) => {
   const availableBedSpace = 0.35 * totalHospitalBeds;
@@ -54,7 +53,9 @@ const covid19ImpactEstimator = (data) => {
     severeImpact: {}
   };
 
-  const { timeToElapse, reportedCases, periodType, totalHospitalBeds } = data;
+  const {
+    timeToElapse, reportedCases, periodType, totalHospitalBeds
+  } = data;
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
   const { impact, severeImpact } = outputData;
   outputData.data = data;
