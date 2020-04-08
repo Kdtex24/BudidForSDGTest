@@ -1,20 +1,20 @@
-// const data = {
-//     region: {
-//         name: "Africa",
-//         avgAge: 19.7,
-//         avgDailyIncomeInUSD: 5,
-//         avgDailyIncomePopulation: 0.71
-//     },
-//     periodType: "days",
-//     timeToElapse: 58,
-//     reportedCases: 674,
-//     population: 66622705,
-//     totalHospitalBeds: 1380614
-// };
+const data = {
+    region: {
+        name: "Africa",
+        avgAge: 19.7,
+        avgDailyIncomeInUSD: 5,
+        avgDailyIncomePopulation: 0.71
+    },
+    periodType: "months",
+    timeToElapse: 58,
+    reportedCases: 674,
+    population: 66622705,
+    totalHospitalBeds: 1380614
+};
 
 const convertToDays = (periodType, timeToElapse) => {
   switch (periodType) {
-    case 'days':
+    case 'days':  
       return timeToElapse;
     case 'weeks':
       return timeToElapse * 7;
@@ -36,11 +36,12 @@ const covid19ImpactEstimator = (data) => {
   const { impact, severeImpact } = outputData;
   impact.currentlyInfected = reportedCases * 10;
   severeImpact.currentlyInfected = reportedCases * 50;
-  const days = convertToDays(periodType, timeToElapse);
-  const factor = parseInt(days / 3, 10);
+  const days = convertToDays(periodType, timeToElapse);  
+  const factor = Math.floor(days / 3);
   impact.infectionsByRequestedTime = impact.currentlyInfected * (2 ** factor);
   severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * (2 ** factor);
   return outputData;
 };
 
+// covid19ImpactEstimator(data)
 export default covid19ImpactEstimator;
