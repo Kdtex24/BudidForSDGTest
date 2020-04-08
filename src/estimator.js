@@ -25,7 +25,7 @@ const convertToDays = (periodType, timeToElapse) => {
   }
 };
 
-const covid19ImpactEstimator = data => {
+const covid19ImpactEstimator = (data) => {
   const outputData = {
     data: {},
     impact: {},
@@ -36,13 +36,10 @@ const covid19ImpactEstimator = data => {
   const { impact, severeImpact } = outputData;
   impact.currentlyInfected = reportedCases * 10;
   severeImpact.currentlyInfected = reportedCases * 50;
-  let days = convertToDays(periodType, timeToElapse);
-  console.log(days)
-  let factor = parseInt(days / 3);
-  impact.infectionsByRequestedTime =
-    impact.currentlyInfected * Math.pow(2, factor);
-  severeImpact.infectionsByRequestedTime =
-    severeImpact.currentlyInfected * Math.pow(2, factor);
+  const days = convertToDays(periodType, timeToElapse);
+  const factor = parseInt(days / 3, 10);
+  impact.infectionsByRequestedTime = impact.currentlyInfected * 2 ** factor;
+  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * 2 ** factor;
   return outputData;
 };
 
