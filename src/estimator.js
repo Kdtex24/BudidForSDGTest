@@ -29,12 +29,12 @@ const fifteenPercent = (infectionsByRequestedTime) => 0.15 * infectionsByRequest
 
 const availableBeds = (totalHospitalBeds, severeCasesByRequestedTime) => {
   const availableBedSpace = 0.35 * totalHospitalBeds;
-  return availableBedSpace - severeCasesByRequestedTime;
+  return Math.trunc(availableBedSpace - severeCasesByRequestedTime);
 };
 
-const ICUcare = (infectionsByRequestedTime) => 0.05 * infectionsByRequestedTime;
+const ICUcare = (infectionsByRequestedTime) => Math.trunc(0.05 * infectionsByRequestedTime);
 
-const ventilators = (infectionsByRequestedTime) => 0.02 * infectionsByRequestedTime;
+const ventilators = (infectionsByRequestedTime) => Math.trunc(0.02 * infectionsByRequestedTime);
 
 const dollarsInFlightCalc = (
   infectionsByRequestedTime,
