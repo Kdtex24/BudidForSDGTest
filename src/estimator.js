@@ -14,8 +14,6 @@
 
 const convertToDays = (periodType, timeToElapse) => {
   switch (periodType) {
-    case 'days':
-      return timeToElapse;
     case 'weeks':
       return timeToElapse * 7;
     case 'months':
@@ -49,17 +47,15 @@ const dollarsInFlightCalc = (
 const covid19ImpactEstimator = (data) => {
   const outputData = {
     data: null,
-    estimate: {
-      impact: {},
-      severeImpact: {}
-    }
+    impact: {},
+    severeImpact: {}
   };
 
   const {
     timeToElapse, reportedCases, periodType, totalHospitalBeds
   } = data;
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
-  const { impact, severeImpact } = outputData.estimate;
+  const { impact, severeImpact } = outputData;
   outputData.data = data;
   impact.currentlyInfected = reportedCases * 10;
   severeImpact.currentlyInfected = reportedCases * 50;
