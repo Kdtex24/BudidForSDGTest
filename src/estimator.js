@@ -12,6 +12,7 @@
 //   totalHospitalBeds: 678874
 // };
 
+const convertToDays = (periodType, timeToElapse) => {
   switch (periodType) {
     case 'weeks':
       return timeToElapse * 7;
@@ -19,18 +20,22 @@
       return timeToElapse * 30;
     default:
       return timeToElapse;
-  };
+  }
+};
 
-const fifteenPercent = (infectionsByRequestedTime) => Math.trunc(0.15 * infectionsByRequestedTime);
+const fifteenPercent = (infectionsByRequestedTime) =>
+  Math.trunc(0.15 * infectionsByRequestedTime);
 
 const availableBeds = (totalHospitalBeds, severeCasesByRequestedTime) => {
   const availableBedSpace = 0.35 * totalHospitalBeds;
   return Math.trunc(availableBedSpace - severeCasesByRequestedTime);
 };
 
-const ICUcare = (infectionsByRequestedTime) => Math.trunc(0.05 * infectionsByRequestedTime);
+const ICUcare = (infectionsByRequestedTime) =>
+  Math.trunc(0.05 * infectionsByRequestedTime);
 
-const ventilators = (infectionsByRequestedTime) => Math.trunc(0.02 * infectionsByRequestedTime);
+const ventilators = (infectionsByRequestedTime) =>
+  Math.trunc(0.02 * infectionsByRequestedTime);
 
 const dollarsInFlightCalc = (
   infectionsByRequestedTime,
@@ -38,7 +43,8 @@ const dollarsInFlightCalc = (
   avgDailyIncomePercent,
   days
 ) => {
-  const value = infectionsByRequestedTime * avgDailyIncome * avgDailyIncomePercent * days;
+  const value =
+    infectionsByRequestedTime * avgDailyIncome * avgDailyIncomePercent * days;
   return parseFloat(value.toFixed(2));
 };
 
@@ -49,9 +55,7 @@ const covid19ImpactEstimator = (data) => {
     severeImpact: {}
   };
 
-  const {
-    timeToElapse, reportedCases, periodType, totalHospitalBeds
-  } = data;
+  const { timeToElapse, reportedCases, periodType, totalHospitalBeds } = data;
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
   const { impact, severeImpact } = outputData;
   outputData.data = data;
@@ -60,7 +64,8 @@ const covid19ImpactEstimator = (data) => {
   const days = convertToDays(periodType, timeToElapse);
   const factor = 2 ** Math.trunc(days / 3);
   impact.infectionsByRequestedTime = impact.currentlyInfected * factor;
-  severeImpact.infectionsByRequestedTime = severeImpact.currentlyInfected * factor;
+  severeImpact.infectionsByRequestedTime =
+    severeImpact.currentlyInfected * factor;
   impact.severeCasesByRequestedTime = fifteenPercent(
     impact.infectionsByRequestedTime
   );
