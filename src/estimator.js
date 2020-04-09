@@ -12,7 +12,6 @@
 //   totalHospitalBeds: 678874
 // };
 
-const convertToDays = (periodType, timeToElapse) => {
   switch (periodType) {
     case 'weeks':
       return timeToElapse * 7;
@@ -20,8 +19,7 @@ const convertToDays = (periodType, timeToElapse) => {
       return timeToElapse * 30;
     default:
       return timeToElapse;
-  }
-};
+  };
 
 const fifteenPercent = (infectionsByRequestedTime) => Math.trunc(0.15 * infectionsByRequestedTime);
 
