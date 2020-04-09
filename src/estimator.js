@@ -1,16 +1,16 @@
-// const data = {
-//   region: {
-//     name: 'Africa',
-//     avgAge: 19.7,
-//     avgDailyIncomeInUSD: 4,
-//     avgDailyIncomePopulation: 0.73
-//   },
-//   periodType: 'days',
-//   timeToElapse: 38,
-//   reportedCases: 2747,
-//   population: 92931687,
-//   totalHospitalBeds: 678874
-// };
+const data = {
+  region: {
+    name: 'Africa',
+    avgAge: 19.7,
+    avgDailyIncomeInUSD: 4,
+    avgDailyIncomePopulation: 0.73
+  },
+  periodType: 'days',
+  timeToElapse: 38,
+  reportedCases: 2747,
+  population: 92931687,
+  totalHospitalBeds: 678874
+};
 
 const convertToDays = (periodType, timeToElapse) => {
   switch (periodType) {
@@ -49,15 +49,17 @@ const dollarsInFlightCalc = (
 const covid19ImpactEstimator = (data) => {
   const outputData = {
     data: null,
-    impact: {},
-    severeImpact: {}
+    estimate: {
+      impact: {},
+      severeImpact: {}
+    }
   };
 
   const {
     timeToElapse, reportedCases, periodType, totalHospitalBeds
   } = data;
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
-  const { impact, severeImpact } = outputData;
+  const { impact, severeImpact } = outputData.estimate;
   outputData.data = data;
   impact.currentlyInfected = reportedCases * 10;
   severeImpact.currentlyInfected = reportedCases * 50;
@@ -105,5 +107,5 @@ const covid19ImpactEstimator = (data) => {
   return outputData;
 };
 
-// console.log(covid19ImpactEstimator(data));
-export default covid19ImpactEstimator;
+console.log(covid19ImpactEstimator(data));
+// export default covid19ImpactEstimator;
