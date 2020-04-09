@@ -91,13 +91,13 @@ const covid19ImpactEstimator = (data) => {
     impact.infectionsByRequestedTime,
     avgDailyIncomePopulation,
     avgDailyIncomeInUSD,
-    timeToElapse
+    days
   );
   severeImpact.dollarsInFlight = dollarsInFlightCalc(
     severeImpact.infectionsByRequestedTime,
     avgDailyIncomePopulation,
     avgDailyIncomeInUSD,
-    timeToElapse
+    days
   );
 
   return outputData;
