@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Form from "react-bootstrap/Form"
 import covid19ImpactEstimator from './estimator'
 import ModalComponent from './components/Modal'
-import "./App.css"
+
 
 
 function App() {
@@ -38,8 +38,8 @@ function App() {
   return (
     <>
     <div className='container'>
-      <div className="App">
-        <header className="App-header">
+      <div className="d-flex flex-column justify-content-center">
+        <header className='text-center'>
           <h1>Novelty COVID-19 Infections Estimator</h1>
         </header>
         <Form onSubmit={handleSubmit}>
