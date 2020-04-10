@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "./App.css"
 import Form from "react-bootstrap/Form"
 import covid19ImpactEstimator from './estimator'
+import ModalComponent from './components/Modal'
+
 
 
 function App() {
@@ -21,7 +23,8 @@ function App() {
         population: parseInt(population),
         totalHospitalBeds: parseInt(totalHospitalBeds),
     }
-    covid19ImpactEstimator(data)
+    setModalData(covid19ImpactEstimator(data))
+    
     
   }
   const [population, setPopulation] = useState(0)
@@ -29,6 +32,10 @@ function App() {
   const [reportedCases, setReportedCases] = useState(0)
   const [totalHospitalBeds, setTotalHospitalBeds] = useState(0)
   const [periodType, setPeriodType] = useState('')
+  const [modalData, setModalData] = useState(null)
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   return (
     <>
@@ -45,7 +52,7 @@ function App() {
               type="number"
               className="form-control"
               id="population"
-              aria-describedby="populationHelp"
+              aria-describedby="population"
               placeholder="Enter Population"
               data-population
               required
@@ -107,10 +114,11 @@ function App() {
             </Form.Control>
           </Form.Group>
           </div>
-          <button type="submit" data-go-estimate className="btn btn-primary">
+          <button type="submit" data-go-estimate className="btn btn-primary" onClick={handleShow} style={{backgroundColor:'#046B99', borderColor:'#046B99'}}>
             Submit
           </button>
         </Form>
+        <ModalComponent  show={show} handleClose={handleClose} data={modalData}/>
       </div>
       </div>
     </>
