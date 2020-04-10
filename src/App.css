@@ -4,8 +4,6 @@ body, html{
   margin: 0;
   background-color: #282c34;
   color: white;
-
-
 }
 
 .App {
@@ -18,9 +16,5 @@ body, html{
 
 .App-header {
   font-size: calc(10px + 2vmin);
-}
-
-.App-link {
-  color: #61dafb;
 }
 
