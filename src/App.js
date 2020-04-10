@@ -1,10 +1,7 @@
 import React, { useState } from "react"
-import "bootstrap/dist/css/bootstrap.min.css"
-import "./App.css"
 import Form from "react-bootstrap/Form"
 import covid19ImpactEstimator from './estimator'
 import ModalComponent from './components/Modal'
-
 
 
 function App() {
@@ -31,7 +28,7 @@ function App() {
   const [timeToElapse, setTimeToElapse] = useState(0)
   const [reportedCases, setReportedCases] = useState(0)
   const [totalHospitalBeds, setTotalHospitalBeds] = useState(0)
-  const [periodType, setPeriodType] = useState('')
+  const [periodType, setPeriodType] = useState('days')
   const [modalData, setModalData] = useState(null)
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
