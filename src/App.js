@@ -105,7 +105,7 @@ function App() {
           </div>
           <Form.Group controlId="periodType" className='col-md-3'>
             <Form.Label>Period Type</Form.Label>
-            <Form.Control as="select" required onChange={(e) => setPeriodType(e.target.value)} >
+            <Form.Control data-period-type as="select" required onChange={(e) => setPeriodType(e.target.value)} >
               <option data-period-type value='days'>Days</option>
               <option data-period-type value='weeks'>Weeks</option>
               <option data-period-type value='months'>Months</option>
