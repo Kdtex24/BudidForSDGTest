@@ -41,7 +41,7 @@ const dollarsInFlightCalc = (
   days
 ) => {
   const value = (infectionsByRequestedTime * avgDailyIncome * avgDailyIncomePercent) / days;
-  return parseFloat(value.toFixed(2));
+  return Math.trunc(value);
 };
 
 const covid19ImpactEstimator = (data) => {
