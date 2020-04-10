@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import Form from "react-bootstrap/Form"
 import covid19ImpactEstimator from './estimator'
 import ModalComponent from './components/Modal'
-
+import './App.css'
 
 
 function App() {
