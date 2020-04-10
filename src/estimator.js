@@ -51,7 +51,12 @@ const covid19ImpactEstimator = (data) => {
     severeImpact: {}
   };
 
-  const { timeToElapse, reportedCases, periodType, totalHospitalBeds } = data;
+  const {
+    timeToElapse, 
+    reportedCases, 
+    periodType,
+     totalHospitalBeds
+     } = data;
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = data.region;
   const { impact, severeImpact } = outputData;
   outputData.data = data;
