@@ -23,19 +23,16 @@ const convertToDays = (periodType, timeToElapse) => {
   }
 };
 
-const fifteenPercent = (infectionsByRequestedTime) =>
-  Math.trunc(0.15 * infectionsByRequestedTime);
+const fifteenPercent = (infectionsByRequestedTime) => Math.trunc(0.15 * infectionsByRequestedTime);
 
 const availableBeds = (totalHospitalBeds, severeCasesByRequestedTime) => {
   const availableBedSpace = 0.35 * totalHospitalBeds;
   return Math.trunc(availableBedSpace - severeCasesByRequestedTime);
 };
 
-const ICUcare = (infectionsByRequestedTime) =>
-  Math.trunc(0.05 * infectionsByRequestedTime);
+const ICUcare = (infectionsByRequestedTime) => Math.trunc(0.05 * infectionsByRequestedTime);
 
-const ventilators = (infectionsByRequestedTime) =>
-  Math.trunc(0.02 * infectionsByRequestedTime);
+const ventilators = (infectionsByRequestedTime) => Math.trunc(0.02 * infectionsByRequestedTime);
 
 const dollarsInFlightCalc = (
   infectionsByRequestedTime,
@@ -43,8 +40,7 @@ const dollarsInFlightCalc = (
   avgDailyIncomePercent,
   days
 ) => {
-  const value =
-    infectionsByRequestedTime * avgDailyIncome * avgDailyIncomePercent * days;
+  const value = (infectionsByRequestedTime * avgDailyIncome * avgDailyIncomePercent) / days;
   return parseFloat(value.toFixed(2));
 };
 
@@ -102,7 +98,6 @@ const covid19ImpactEstimator = (data) => {
     avgDailyIncomeInUSD,
     days
   );
-
   return outputData;
 };
 
