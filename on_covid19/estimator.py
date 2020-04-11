@@ -1,22 +1,27 @@
+
 def estimator(data):
+
     periodtype = data['periodType']
     time_to_elapse = data['timeToElapse']
     reported_cases = data['reportedCases']
     hospital_beds = data['totalHospitalBeds']
-    income = data['avgDailyIncomeInUSD']
-    income_population = data['avgDailyIncomePopulation']
+    income = data['region']['avgDailyIncomeInUSD']
+    income_population = data['region']['avgDailyIncomePopulation']
 
     impact_cases = reported_cases * 10
     severe_cases = reported_cases * 50
     available_beds = 0.35 * hospital_beds
 
+    # calculate the number of days
+
     def number_of_days(periodtype, time_to_elapse):
-        if periodtype == 'weeks':
-          return time_to_elapse * 7
+        if periodtype == 'days':
+            days = time_to_elapse
+        elif periodtype == 'weeks':
+            days = time_to_elapse * 7
         elif periodtype == 'months':
-          return time_to_elapse * 30
-        else:
-          return time_to_elapse
+            days = time_to_elapse * 30
+        return days
 
     # infections by requested time, where case = currentlyInfected
     def infected_till_date(case):
@@ -33,22 +38,10 @@ def estimator(data):
         inf = infected_till_date(case)
         days = number_of_days(periodtype, time_to_elapse)
         return int((inf * income_population * income) / days)
+        # return round(inf * income_population * income * days, 2)
 
     result = {
-        "data": {
-            'region': {
-                'name': data['name'],
-                'avgAge': data['avgAge'],
-                'avgDailyIncomeInUSD':int(data['avgDailyIncomeInUSD'] ),
-                'avgDailyIncomePopulation': data['avgDailyIncomePopulation']
-                },
-                'periodType': data['periodType'],
-                'timeToElapse': data['timeToElapse'],
-                'reportedCases': data['reportedCases'],
-                'population': data['population'],
-                'totalHospitalBeds': data['totalHospitalBeds']
-                }
-,
+        "data": data,
         "impact": {
             "currentlyInfected": impact_cases,
             "infectionsByRequestedTime": infected_till_date(impact_cases),
