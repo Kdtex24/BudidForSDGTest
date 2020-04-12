@@ -44,11 +44,8 @@ class EstimatorViewXML(LoggingMixin, APIView):
 
 
 def space_determiner(log):
-    log_response = "{:02d}".format(log.response_ms)
-    status_code = int(log.status_code)
-    # if(len(log.path) <= 23 ):
-    #     return f"{log.method} {log.path} {status_code} {log_response}ms\n"
-    # else:
+    log_response = int("{:02d}".format(log.response_ms))
+    status_code = log.status_code
     return f"{log.method} {log.path} {status_code} {log_response}ms\n"
         
 class Logs(LoggingMixin, APIView):
