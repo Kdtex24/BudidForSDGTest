@@ -43,11 +43,18 @@ class EstimatorViewXML(LoggingMixin, APIView):
         #     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
+def space_determiner(log):
+    print9=(log.path)
+    if(len(log.path) <= 23 ):
+        return f"{log.method}\t\t{log.path}\t\t{log.status_code}{log.response_ms} ms \n"
+
+    else:
+        return f"{log.method}\t\t{log.path}\t{log.status_code}{log.response_ms} ms \n"
+        
 class Logs(APIView):
     renderer_classes = [PlainTextRenderer]
-
     def get(self, request, format=None):
-        logs = [f"{log.method}\t\t{log.path}\t\t{log.status_code}{log.response_ms} ms \n" for log in APIRequestLog.objects.all()]
+        logs = [space_determiner(log) for log in APIRequestLog.objects.all()]
         logs = ''.join(logs)
         return Response(logs, content_type='text/plain')
 
