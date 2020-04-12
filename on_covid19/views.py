@@ -45,10 +45,10 @@ class EstimatorViewXML(LoggingMixin, APIView):
 
 def space_determiner(log):
     if(len(log.path) <= 23 ):
-        return f"{log.method}\t\t{log.path}\t\t{log.status_code}{log.response_ms} ms \n"
+        return f"{log.method}\t\t{log.path}\t\t{log.status_code}{log.response_ms}ms \n"
 
     else:
-        return f"{log.method}\t\t{log.path}\t{log.status_code}{log.response_ms} ms \n"
+        return f"{log.method}\t\t{log.path}\t{log.status_code}{log.response_ms}ms \n"
         
 class Logs(LoggingMixin, APIView):
     renderer_classes = [PlainTextRenderer]
